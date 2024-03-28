@@ -1,0 +1,16 @@
+services:
+  proxy:
+    image: envoyproxy/envoy:contrib-v1.29.2
+    command:
+      - "-c /envoy-demo.yaml"
+    volumes:
+      - ./envoy-demo.yaml:/envoy-demo.yaml
+      - ./simple.so:/lib/simple.so
+    depends_on:
+    - echo_service
+    ports:
+    - "${PORT_PROXY:-10000}:10000"
+
+  echo_service:
+    image: kong/go-echo:latest
+    hostname: echo_service
