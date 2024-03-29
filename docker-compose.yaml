@@ -5,7 +5,7 @@ services:
       - "-c /envoy-demo.yaml"
     volumes:
       - ./envoy-demo.yaml:/envoy-demo.yaml
-      - ./simple.so:/lib/simple.so
+      - ./_out/lib.so:/lib/lib.so
     depends_on:
     - echo_service
     ports:
