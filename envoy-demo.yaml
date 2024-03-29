@@ -18,7 +18,8 @@ static_resources:
           plugin_config:
             "@type": type.googleapis.com/xds.type.v3.TypedStruct
             value:
-              echo_server_addr: echo_service
+              server_addr: echo_service
+              server_port: "1025"
   clusters:
   - name: plainText
     type: ORIGINAL_DST
