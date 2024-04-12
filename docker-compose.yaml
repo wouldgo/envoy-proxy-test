@@ -1,6 +1,18 @@
 services:
+  dev_place:
+    image: debian:12.5
+    entrypoint:
+      - "bash"
+    command: [
+      '-c',
+      'yes > /dev/null 2>&1'
+    ]
+    depends_on:
+      - proxy
   proxy:
-    image: envoyproxy/envoy:contrib-v1.29.2
+    image: envoyproxy/envoy:contrib-v1.29.3
+    environment:
+      GODEBUG: cgocheck=0
     command:
       - "-c /envoy-demo.yaml"
     volumes:

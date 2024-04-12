@@ -110,7 +110,6 @@ func (f *downFilter) OnNewConnection() api.FilterStatus {
 func (f *downFilter) OnData(buffer []byte, endOfStream bool) api.FilterStatus {
 	remoteAddr, _ := f.cb.StreamInfo().UpstreamRemoteAddress()
 	fmt.Printf("OnData, addr: %v, buffer: %v, endOfStream: %v\n", remoteAddr, string(buffer), endOfStream)
-	buffer = append([]byte("hello, "), buffer...)
 	f.upFilter.ch <- buffer
 	return api.NetworkFilterContinue
 }
